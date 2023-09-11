@@ -1,0 +1,50 @@
+<h1>HOME</h1>
+
+
+<h3>投稿を検索</h3>
+<div class="search_container">
+<form action="/kids" accept-charset="UTF-8" method="get">
+        <input type="text" name="search" id="search" value="" placeholder="キーワード">
+        <button name="button" type="submit" class="applications_searchbutton">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+</form>
+</div>
+
+
+
+<%= page_entries_info @kids %>
+<%= paginate @kids %>
+
+<div class="kids-container">
+  <% @kids.each do |t| %>
+    <div class="kid">
+    <%= t.user.email %>
+      <%= t.name %>
+      <%= t.genre %>
+      <%= t.about %>
+
+      <% if user_signed_in? %>
+      <% if current_user.already_favorited?(t) %>
+          <%= link_to kid_favorite_path(id: t.id, kid_id: t.id), method: :delete do %>
+            <i class="fa-solid fa-apple-whole" style="color: #fa2934;"></i><%= t.favorites.count %>
+          <% end %>
+      <% else %>
+          <%= link_to kid_favorites_path(id: t.id, kid_id: t.id), method: :post do %>
+            <i class="fa-solid fa-apple-whole" style="color: #f9b9c9;"></i><%= t.favorites.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+  <i class="fa-solid fa-apple-whole" style="color: #fa2934;"></i><%= t.favorites.count %>
+  <% end %>
+
+      <%= link_to "詳細へ", kid_path(t.id) %>
+     <% if user_signed_in? && current_user.id == t.user_id %>
+      <%= link_to "編集する", edit_kid_path(t.id) %>
+      <%= button_to "削除する", kid_path(t.id), method: :delete %>
+    <% end %>
+    </div>
+  <% end %>
+</div>
+
+

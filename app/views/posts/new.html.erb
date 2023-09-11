@@ -1,0 +1,28 @@
+<h1>苦手な食べ物</h1>
+<h3>方法検索</h3>
+<%= form_for @post do |f| %>
+    <div class="field">
+    <%= f.label :食材名 %>
+    <%= f.text_field :name, :size => 30 %>
+     </div>
+     <div class="field">
+     <%= f.label :image %>
+     <%= f.file_field :image %>
+   </div>
+
+<div class="field">
+  <%= f.label :食材分類 %>
+  <%= f.select :genre, 
+  [["野菜", "野菜"], 
+  ["果物", "果物"], 
+  ["その他", "その他"]], include_blank: "選択して下さい" %>
+</div>
+
+<div class="field">
+    <%= f.label :補足  %>
+    <%= f.text_area :about, :size => "30x2" %>
+</div>
+
+<%= f.submit "投稿する" %>
+<% end %>
+

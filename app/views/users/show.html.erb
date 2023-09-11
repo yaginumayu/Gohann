@@ -1,0 +1,31 @@
+<div class="mypage">
+<h1><span class="under">My page</span></h1>
+<br>
+<p>名前 : <%= @user.name %></p>
+<br>
+<p>メールアドレス : <%= @user.email %></p>
+<br>
+<p>プロフィール : <%= @user.profile %></p>
+<br>
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path, class: "button2" %>
+<% end %>
+</div>
+
+<div class="mypost">
+<h2><span class="under">あなたの投稿</span></h2>
+<br>
+<% @user.posts.each do |t| %>
+  <%= t.user.name %>
+  <%= t.name %>
+<% end %>
+</div>
+
+<div class="likepost">
+<h2><span class="under">いいねした投稿</span></h2>
+<br>
+<% @user.liked_posts.each do |t| %>
+  <%= t.user.name %>
+  <%= t.name %>
+<% end %>
+</div>

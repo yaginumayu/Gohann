@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gohann</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/f7cc716d5e.js" crossorigin="anonymous"></script> 
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kosugi&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Kosugi&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+  <header>
+  <h1>苦手な食べ物</h1>
+  <div class="header-list">
+   <ul>
+    <% if user_signed_in? %>
+    <li><%= link_to kids_path,method: :get do%>
+      <i class="fa-solid fa-house fa-lg" style="color: #fbf2e9;"></i>
+      <% end %></li>
+    <li><%= link_to user_path(current_user.id),method: :get do%>
+      <i class="fa-solid fa-user fa-lg" style="color: #fff4e5;"></i>
+      <% end %></li>
+    <li><%= link_to new_kid_path,method: :get do%>
+      <i class="fa-solid fa-pen fa-lg" style="color: #fdeedd;"></i>
+      <% end %></li>
+    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+     <li><%= link_to "新規登録", new_user_registration_path %></li>
+     <li><%= link_to "ログイン", new_user_session_path %></li>
+    <% end %>
+   </ul>
+  </div>
+ </header>
+ <main>
+    <%= yield %>
+    </main>
+    <footer>
+      <p>Copyright © GeekSalon All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>
