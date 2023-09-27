@@ -1,28 +1,35 @@
-<h1>苦手な食べ物</h1>
-<h3>投稿詳細</h3>
+<div class="syousai">
 <div class="kid">
+<h1><span class="under">投稿の詳細</span></h1>
+<br>
   <p><%= @kid.name %></p>
   <p><%= @kid.created_at %></p>
+
   <% if user_signed_in? %>
+
   <% if current_user.already_favorited?(@kid) %>
     <%= link_to kid_favorite_path(@kid), method: :delete do %>
-        <i class="fas fa-heart"></i><%= @kid.favorites.count %>
+        <i class="fa-solid fa-apple-whole" style="color: #fa2934;"></i><%= @kid.favorites.count %>
     <% end %>
   <% else %>
     <%= link_to kid_favorites_path(@kid), method: :post do %>
-        <i class="fas fa-heart"></i><%= @kid.favorites.count %>
+        <i class="fa-solid fa-apple-whole" style="color: #f9b9c9;"></i><%= @kid.favorites.count %>
     <% end %>
   <% end %>
 <% else %>
-<i class="fas fa-heart"></i><%= @kid.favorites.count %>
+<i class="fa-solid fa-apple-whole" style="color: #fa2934;"></i><%= @kid.favorites.count %>
 <% end %>
-<%= link_to "編集する", edit_kid_path(@kid.id) %>
-</div>
+<br>
 
-<h2>いいねしたユーザー</h2>
+<%= link_to "編集する", edit_kid_path(@kid.id), class: "button10" %>
+<br>
+<br>
+
+<h3><span class="under">いいねしたユーザー</span></h3>
 <% @kid.favorited_users.each do |user| %>
-  <li><%= user.email %></li>
+<%= user.email %>
 <% end %>
-
-<%= link_to "投稿一覧に戻る", kids_path %>
-<%= link_to "編集する", edit_kid_path(@kid.id) %>
+<br>
+<br>
+</div>
+</div>

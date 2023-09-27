@@ -1,5 +1,16 @@
+<div class="syousai">
+
+<div class="hennsyuu">
 <%= form_for @kid do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name, :size => 140 %> 
-    <%= f.submit "編集する" %>
-  <% end %>
+    <h1><span class="under"><%= f.label :編集内容 %></span></h1>
+    <br>
+    <%= f.text_field :name, :size => 140 %>
+    <br>
+    <br>
+    </div>
+    <div class="actions">
+<%= f.submit "投稿する", class: "button9" %>
+<% end %>
+</div>
+</div>
+  

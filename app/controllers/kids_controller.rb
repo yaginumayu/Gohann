@@ -1,5 +1,8 @@
 class KidsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
+    def top
+    end
+    
     def index
       if params[:search] == nil
         @kids = Kid.all

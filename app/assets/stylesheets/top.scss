@@ -1,0 +1,30 @@
+.slide-container {
+    width: 200%;
+    height: 200%;
+    margin: 5% auto;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+   }
+   .slide-wrapper {
+    display: flex;
+    animation: slide-flow 20s infinite linear 1s both;
+   }
+   .slide{
+    width: 900px;
+    object-fit:contain;
+   }
+   @keyframes slide-flow {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-100%);}
+   }
+
+   .nigate h1{
+    color: #774716fd;
+    font-size: 50px;
+    text-align: center;
+}
+
+.under {
+    background: linear-gradient(transparent 70%, #fa9f28da 70%);
+  }

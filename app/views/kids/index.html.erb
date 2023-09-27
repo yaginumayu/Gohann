@@ -1,4 +1,9 @@
-<h1>HOME</h1>
+
+<div class="homepage">
+
+<div class="home">
+
+<h1><span class="under">HOME</span></h1>
 
 
 <h3>投稿を検索</h3>
@@ -10,18 +15,17 @@
         </button>
 </form>
 </div>
+</div>
 
-
-
-<%= page_entries_info @kids %>
-<%= paginate @kids %>
-
-<div class="kids-container">
+<div class="answer">
+<h3><span class="under">検索結果</span></h3>
+<br>
   <% @kids.each do |t| %>
-    <div class="kid">
+    <br>
     <%= t.user.email %>
-      <%= t.name %>
+    <h1><span class="under"><%= t.name %></span></h1>
       <%= t.genre %>
+      <br>
       <%= t.about %>
 
       <% if user_signed_in? %>
@@ -37,14 +41,21 @@
   <% else %>
   <i class="fa-solid fa-apple-whole" style="color: #fa2934;"></i><%= t.favorites.count %>
   <% end %>
-
-      <%= link_to "詳細へ", kid_path(t.id) %>
+    <%= link_to "詳細へ", kid_path(t.id), class: "button6" %>
      <% if user_signed_in? && current_user.id == t.user_id %>
-      <%= link_to "編集する", edit_kid_path(t.id) %>
-      <%= button_to "削除する", kid_path(t.id), method: :delete %>
-    <% end %>
-    </div>
+
+    <%= link_to "編集する", edit_kid_path(t.id), class: "button7" %>
+  <br>
+    <%= link_to kid_path(t.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-delete' do %>
+      <i class="fa-solid fa-trash fa-lg" style="color: #6A2C0B;"></i>
+      <% end %>
+      <br>
+      <br>
+      <% end %>
   <% end %>
+
+<%= paginate @kids %>
+</div>
 </div>
 
 
